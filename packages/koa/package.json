@@ -1,6 +1,6 @@
 {
   "name": "@soid/koa",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "Solid identity for services - koa middleware",
   "keywords": [
     "solid",
@@ -55,6 +55,6 @@
   },
   "dependencies": {
     "@koa/router": "^13.1.0",
-    "@soid/core": "0.0.0"
+    "@soid/core": "^0.0.1-alpha.0"
   }
 }

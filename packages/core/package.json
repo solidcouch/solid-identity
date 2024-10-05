@@ -1,0 +1,58 @@
+{
+  "name": "@soid/core",
+  "version": "0.0.0",
+  "description": "Solid identity for services - core methods",
+  "keywords": [
+    "solid",
+    "solidproject",
+    "identity",
+    "solid-identity",
+    "solid-service",
+    "solid-protocol",
+    "solid-oidc",
+    "oidc"
+  ],
+  "homepage": "",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "require": {
+        "default": "./dist/cjs/index.js",
+        "types": "./dist/cjs/index.d.ts"
+      },
+      "import": {
+        "default": "./dist/esm/index.js",
+        "types": "./dist/esm/index.d.ts"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "directories": {
+    "lib": "dist",
+    "test": "src/test"
+  },
+  "scripts": {
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build": "rm -rf dist && yarn build:esm && yarn build:cjs",
+    "prepublishOnly": "yarn build",
+    "test": "",
+    "lint": "",
+    "format": ""
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "@inrupt/solid-client-authn-core": "^2.2.6",
+    "jose": "^5.9.3"
+  }
+}

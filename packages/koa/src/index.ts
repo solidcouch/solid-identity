@@ -2,7 +2,7 @@ import Router from '@koa/router'
 import {jwkPublicKey} from '@soid/core'
 export {getAuthenticatedFetch} from '@soid/core'
 
-const createMiddleware = (identity: string) => {
+export const solidIdentity = (identity: string) => {
 
   const {hash, pathname, origin} = new URL(identity)
 
@@ -36,3 +36,4 @@ const createMiddleware = (identity: string) => {
 
   return router
 }
+

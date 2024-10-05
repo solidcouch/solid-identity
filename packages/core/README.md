@@ -1,11 +1,9 @@
-# `core`
+# `@soid/core`
 
-> TODO: description
+Give your Solid service a Solid-OIDC-compatible identity.
 
 ## Usage
 
-```
-const core = require('core');
-
-// TODO: DEMONSTRATE API
+```ts
+// TODO
 ```

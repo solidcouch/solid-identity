@@ -12,7 +12,14 @@
     "solid-oidc",
     "oidc"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/solidcouch/solid-identity/tree/main/packages/core",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solidcouch/solid-identity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/solidcouch/solid-identity/issues"
+  },
   "license": "MIT",
   "type": "module",
   "main": "./dist/cjs/index.js",
@@ -37,6 +44,9 @@
   "directories": {
     "lib": "dist",
     "test": "src/test"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "build:esm": "tsc --project tsconfig.esm.json",

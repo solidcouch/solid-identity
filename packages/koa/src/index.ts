@@ -1,11 +1,8 @@
 import Router from '@koa/router'
 import { getEndpoints } from '@soid/core'
-export {getAuthenticatedFetch} from '@soid/core'
+export { getAuthenticatedFetch } from '@soid/core'
 
 export const solidIdentity = (identity: string) => {
-
-  const {hash, pathname, origin} = new URL(identity)
-
   const router = new Router()
 
   const endpoints = getEndpoints(identity)
@@ -14,7 +11,9 @@ export const solidIdentity = (identity: string) => {
     router[endpoint.method](endpoint.path, async ctx => {
       const accepted = ctx.request.accepts(Object.keys(endpoint.body))
 
-      ctx.body = accepted ? endpoint.body[accepted] : endpoint.body[endpoint.defaultContentType]
+      ctx.body = accepted
+        ? endpoint.body[accepted]
+        : endpoint.body[endpoint.defaultContentType]
 
       ctx.set('content-type', accepted || endpoint.defaultContentType)
     })
@@ -22,4 +21,3 @@ export const solidIdentity = (identity: string) => {
 
   return router
 }
-

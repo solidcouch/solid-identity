@@ -795,6 +795,8 @@ __metadata:
     "@soid/core": "workspace:^"
     "@types/koa__router": "npm:^12.0.4"
     typescript: "npm:^5.6.2"
+  peerDependencies:
+    "@koa/router": ">=13"
   languageName: unknown
   linkType: soft
 

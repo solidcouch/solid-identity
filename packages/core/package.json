@@ -50,7 +50,8 @@
   },
   "scripts": {
     "build:esm": "tsc --project tsconfig.esm.json",
-    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build:cjs": "tsc --project tsconfig.cjs.json && yarn build:cjs:package",
+    "build:cjs:package": "cp ../../commonjspkg.json ./dist/cjs/package.json",
     "build": "rm -rf dist && yarn build:esm && yarn build:cjs",
     "prepublishOnly": "yarn build",
     "test": "",

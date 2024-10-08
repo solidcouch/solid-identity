@@ -4,8 +4,8 @@ With _Solid Identity_, you can give your Solid service a Solid-OIDC-compatible i
 
 ## Packages
 
-- [`@ldhop/core`](https://npmjs.com/package/@ldhop/core) - Core methods.
-- [`@ldhop/koa`](https://npmjs.com/package/@ldhop/koa) - Koa middleware.
+- [`@soid/core`](https://npmjs.com/package/@soid/core) - Core methods.
+- [`@soid/koa`](https://npmjs.com/package/@soid/koa) - Koa middleware.
 
 ## How does it work?
 

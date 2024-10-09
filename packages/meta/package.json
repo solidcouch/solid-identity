@@ -1,0 +1,18 @@
+{
+  "name": "soid",
+  "version": "0.0.1-alpha.3",
+  "description": "Meta package for Solid Identity (SoId)",
+  "homepage": "https://github.com/solidcouch/solid-identity/tree/main/packages/meta",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solidcouch/solid-identity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/solidcouch/solid-identity/issues"
+  },
+  "license": "MIT",
+  "scripts": {
+    "prepack": "rm ./README.md && cp ../../README.md .",
+    "postpack": "git reset ./README.md"
+  }
+}

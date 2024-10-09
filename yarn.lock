@@ -5413,6 +5413,12 @@ __metadata:
   languageName: node
   linkType: hard
 
+"soid@workspace:packages/meta":
+  version: 0.0.0-use.local
+  resolution: "soid@workspace:packages/meta"
+  languageName: unknown
+  linkType: soft
+
 "sort-keys@npm:^2.0.0":
   version: 2.0.0
   resolution: "sort-keys@npm:2.0.0"

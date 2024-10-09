@@ -11,3 +11,6 @@ node_modules
 
 # ignore builds
 packages/*/dist/
+
+# ignore outputs of yarn pack
+**/package.tgz

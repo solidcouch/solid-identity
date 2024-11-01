@@ -2,10 +2,10 @@ import Router from '@koa/router'
 import { getEndpoints } from '@soid/core'
 export { getAuthenticatedFetch } from '@soid/core'
 
-export const solidIdentity = (identity: string) => {
+export const solidIdentity = (identity: string, baseUrl?: string) => {
   const router = new Router()
 
-  const endpoints = getEndpoints(identity)
+  const endpoints = getEndpoints(identity, baseUrl)
 
   for (const endpoint of endpoints) {
     router[endpoint.method](endpoint.path, async ctx => {

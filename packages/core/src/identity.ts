@@ -22,8 +22,11 @@ export const fullJwkPublicKey = {
 
 export const getAuthenticatedFetch = async (
   webId: string,
+  baseUrl?: string,
 ): Promise<typeof globalThis.fetch> => {
-  const { origin: baseUrl } = new URL(webId)
+  const { origin } = new URL(webId)
+
+  baseUrl ??= origin
   const dpopKey = await generateDpopKeyPair()
 
   const jkt = await calculateJwkThumbprint(

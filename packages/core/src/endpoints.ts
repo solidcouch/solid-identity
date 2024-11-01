@@ -7,8 +7,13 @@ export interface Endpoint {
   defaultContentType: string
 }
 
-export const getEndpoints = (webId: string, baseUrl?: string): Endpoint[] => {
+export const getEndpoints = (webId: string, issuer?: string): Endpoint[] => {
   const { pathname, hash, origin } = new URL(webId)
+
+  issuer = issuer ? new URL(issuer).origin : origin
+
+  // make sure that issuer doesn't contain any unwanted paths etc.
+  issuer = new URL(issuer).origin
 
   const endpoints: Endpoint[] = [
     {
@@ -16,8 +21,8 @@ export const getEndpoints = (webId: string, baseUrl?: string): Endpoint[] => {
       path: '/.well-known/openid-configuration',
       body: {
         'application/json': {
-          issuer: baseUrl ?? origin,
-          jwks_uri: new URL('/jwks', baseUrl ?? origin).toString(),
+          issuer,
+          jwks_uri: new URL('/jwks', issuer).toString(),
           response_types_supported: ['id_token', 'token'],
           scopes_supported: ['openid', 'webid'],
         },
@@ -32,7 +37,7 @@ export const getEndpoints = (webId: string, baseUrl?: string): Endpoint[] => {
     },
   ]
 
-  if (!baseUrl) {
+  if (issuer === origin) {
     endpoints.push({
       method: 'get',
       path: pathname,

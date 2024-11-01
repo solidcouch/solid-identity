@@ -1,4 +1,3 @@
-import Router from '@koa/router'
 import { App, AppRunner, joinFilePath } from '@solid/community-server'
 import Koa from 'koa'
 import * as msw from 'msw'
@@ -41,9 +40,8 @@ beforeEach(async () => {
 
 const setupServer = (...props: Parameters<typeof solidIdentity>) => {
   const app = new Koa()
-  const router = new Router()
-  router.use(solidIdentity(...props).routes())
-  app.use(router.allowedMethods()).use(router.routes())
+  const identity = solidIdentity(...props)
+  app.use(identity.allowedMethods()).use(identity.routes())
   return app
 }
 

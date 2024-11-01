@@ -22,11 +22,11 @@ export const fullJwkPublicKey = {
 
 export const getAuthenticatedFetch = async (
   webId: string,
-  baseUrl?: string,
+  issuer?: string,
 ): Promise<typeof globalThis.fetch> => {
   const { origin } = new URL(webId)
 
-  baseUrl ??= origin
+  issuer = issuer ? new URL(issuer).origin : origin
   const dpopKey = await generateDpopKeyPair()
 
   const jkt = await calculateJwkThumbprint(
@@ -45,7 +45,7 @@ export const getAuthenticatedFetch = async (
     .setIssuedAt(now)
     .setExpirationTime(now + 3600)
     .setAudience('solid')
-    .setIssuer(baseUrl)
+    .setIssuer(issuer)
     .setJti(randomUUID())
     .sign(tokenKeyPair.privateKey)
 

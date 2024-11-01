@@ -11,13 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+      - name: Setup
+        uses: './.github/actions/setup'
 
-      - name: Install NPM packages
-        run: yarn install --frozen-lockfile
+      - name: Build packages
+        run: yarn lerna run build
 
       - name: Run tests
-        run: yarn lerna run test
+        run: yarn workspaces foreach --all run test run

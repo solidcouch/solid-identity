@@ -11,16 +11,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
+      - name: Setup
+        uses: './.github/actions/setup'
 
-      - name: Install NPM packages
-        run: yarn install --frozen-lockfile
-
-      - name: Run linter
+      - name: Lint
         run: yarn lint
 
-      - name: Run prettier check
+      - name: Check formatting
         run: yarn prettier --check .

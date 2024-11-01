@@ -1,6 +1,6 @@
 {
   "name": "soid",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.4",
   "description": "Meta package for Solid Identity (SoId)",
   "homepage": "https://github.com/solidcouch/solid-identity/tree/main/packages/meta",
   "repository": {

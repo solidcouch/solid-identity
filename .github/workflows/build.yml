@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Enable corepack for yarn berry
+        run: corepack enable
+
       - name: Install NPM packages
         run: yarn install --frozen-lockfile
 

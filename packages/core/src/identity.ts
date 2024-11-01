@@ -34,8 +34,8 @@ export const getAuthenticatedFetch = async (
   const now = Math.floor(Date.now() / 1000)
 
   const token = await new SignJWT({
-    webid: `${baseUrl}/profile/card#bot`,
-    sub: `${baseUrl}/profile/card#bot`, // Bot's WebID
+    webid: webId,
+    sub: webId, // Bot's WebID
     cnf: { jkt },
   })
     .setProtectedHeader({ alg: 'ES256', typ: 'at+jwt', kid })

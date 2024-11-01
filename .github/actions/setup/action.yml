@@ -1,0 +1,19 @@
+name: Setup environment
+description: 'Set up the repository to run yarn commands on it etc...'
+
+runs:
+  using: 'composite'
+
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v4
+      with:
+        node-version: 22
+
+    - name: Enable corepack for yarn berry
+      shell: bash
+      run: corepack enable
+
+    - name: Install NPM packages
+      shell: bash
+      run: yarn install --immutable

@@ -1,0 +1,7 @@
+[
+  {
+    "email": "person@example",
+    "password": "password",
+    "pods": [{ "name": "person" }]
+  }
+]

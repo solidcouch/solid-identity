@@ -20,7 +20,7 @@ beforeAll(async () => {
   css = await new AppRunner().create({
     shorthand: {
       port: 4000,
-      // loggingLevel: 'off',
+      loggingLevel: 'off',
       seedConfig: joinFilePath(__dirname, './css-pod-seed.json'), // set up some Solid accounts
     },
   })
@@ -115,7 +115,7 @@ describe('Solid identity', () => {
     const baseUrl = 'http://localhost:3000'
 
     const identityServer = setupIdentityServer({ webId, provider: baseUrl })
-    identityServer.listen()
+    identityServer.listen({ onUnhandledRequest: 'bypass' })
     const app = setupServer(webId, baseUrl)
     const server = await startServer(app, 3000)
     // check .well-known endpoint
@@ -182,7 +182,7 @@ describe('Solid identity', () => {
     expect(authenticatedResponse.ok).toEqual(true)
     // stop the server
     await stopServer(server)
-  }, 10000)
+  })
 
   test('Fetch protected data from CSS with custom webId identity', async () => {
     // set up the koa service and soid middleware
@@ -195,7 +195,7 @@ describe('Solid identity', () => {
       provider: 'http://localhost:3000',
     })
 
-    identityServer.listen()
+    identityServer.listen({ onUnhandledRequest: 'bypass' })
 
     // setup some data on the server
     const person = await getDefaultPerson(

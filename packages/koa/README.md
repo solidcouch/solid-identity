@@ -2,9 +2,26 @@
 
 Give your koa-based Solid service a Solid-OIDC-compatible identity.
 
+## Overview
+
+This library provides:
+
+- identity-serving middleware for your koa-based service: `solidIdentity(webId: string, issuer?: string)`
+- authenticated fetch that your service can use to access protected resources: `await getAuthenticatedFetch(webId: string, issuer?: string)`
+
+If you want to serve identity for a koa-incompatible service, consider using lower level [`@soid/core`](https://npmjs.com/package/@soid/core), or [open an issue](https://github.com/solidcouch/solid-identity/issues).
+
 ## Usage
 
-### Service's own webId
+### Installation
+
+```bash
+npm install --save @soid/koa
+# or
+yarn add @soid/koa
+```
+
+### Identity for service's own webId
 
 By default, your service can serve its own webId.
 
@@ -30,7 +47,7 @@ app.use(router.routes()).use(router.allowedMethods())
 const fetch = getAuthenticatedFetch(webId)
 ```
 
-### Custom webId
+### Identity for custom webId
 
 You can also authenticate your service with custom webId (for example your own webId)
 
@@ -41,8 +58,10 @@ import Koa from 'koa'
 import Router from '@koa/router'
 import { solidIdentity, getAuthenticatedFetch } from '@soid/koa'
 
-const webId = 'https://custom.webid/profile/card#me' // you'll have to serve this somewhere, and add the required triple
-const issuer = 'https://service.example' // this has to match your service's origin
+// The webId must serve a profile in text/turtle, and has to contain the required triple pointing to the issuer
+const webId = 'https://custom.webid/profile/card#me'
+// The issuer has to match your service's origin
+const issuer = 'https://service.example'
 
 const app = new Koa()
 const router = new Router()

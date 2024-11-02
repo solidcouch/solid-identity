@@ -13,9 +13,9 @@ There are three endpoints that need to be set up:
 
 - `/.well-known/openid-configuration`
 - `/path/to/jwks`
-- `/path/to/webId`
+- `/path/to/webId` - unless you want to use custom webId
 
-For more details, you can check the output of `getEndpoints(webId)` from the `@soid/core` package.
+For more details, you can check the output of `getEndpoints(webId: string, issuer?: string)` from the `@soid/core` package.
 
 ## Limitations
 

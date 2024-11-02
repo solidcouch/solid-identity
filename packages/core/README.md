@@ -6,14 +6,22 @@ Give your Solid service a Solid-OIDC-compatible identity.
 
 This library:
 
-- tells you which endpoints your service has to serve
-- provides authenticated fetch that your service can use to access protected resources
+- tells you which endpoints your service has to serve: `getEndpoints(webId: string, issuer?: string)`
+- provides authenticated fetch that your service can use to access protected resources: `await getAuthenticatedFetch(webId: string, issuer?: string)`
 
 Please consider using higher-level libraries like [`@soid/koa`](https://npmjs.com/package/@soid/koa).
 
 ## Usage
 
-### Service's own webId
+### Installation
+
+```bash
+npm install --save @soid/core
+# or
+yarn add @soid/core
+```
+
+### Identity for service's own webId
 
 By default, your service can serve its own webId.
 
@@ -39,9 +47,9 @@ const endpoints = getEndpoints(webId)
 // }]
 ```
 
-### Custom webId
+### Identity for custom webId
 
-You can also authenticate your service with custom webId (for example your own webId)
+You can also authenticate your service with custom webId, such as your personal webId.
 
 You MUST add triple `<webId> solid:oidcIssuer <issuer>.` to your webId, where `issuer` MUST match the origin of the service. (no trailing slashes!)
 

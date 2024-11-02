@@ -7,17 +7,22 @@ export interface Endpoint {
   defaultContentType: string
 }
 
-export const getEndpoints = (webId: string): Endpoint[] => {
+export const getEndpoints = (webId: string, issuer?: string): Endpoint[] => {
   const { pathname, hash, origin } = new URL(webId)
 
-  return [
+  issuer = issuer ? new URL(issuer).origin : origin
+
+  // make sure that issuer doesn't contain any unwanted paths etc.
+  issuer = new URL(issuer).origin
+
+  const endpoints: Endpoint[] = [
     {
       method: 'get',
       path: '/.well-known/openid-configuration',
       body: {
         'application/json': {
-          issuer: origin,
-          jwks_uri: new URL('/jwks', webId).toString(),
+          issuer,
+          jwks_uri: new URL('/jwks', issuer).toString(),
           response_types_supported: ['id_token', 'token'],
           scopes_supported: ['openid', 'webid'],
         },
@@ -30,7 +35,10 @@ export const getEndpoints = (webId: string): Endpoint[] => {
       body: { 'application/json': { keys: [fullJwkPublicKey] } },
       defaultContentType: 'application/json',
     },
-    {
+  ]
+
+  if (issuer === origin) {
+    endpoints.push({
       method: 'get',
       path: pathname,
       body: {
@@ -46,6 +54,8 @@ export const getEndpoints = (webId: string): Endpoint[] => {
       },
       // TODO add application/ld+json
       defaultContentType: 'text/turtle',
-    },
-  ]
+    })
+  }
+
+  return endpoints
 }

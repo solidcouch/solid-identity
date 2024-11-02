@@ -66,6 +66,7 @@
     "@types/koa__router": "^12.0.4",
     "css-authn": "^0.0.16",
     "koa": "^2.15.3",
+    "msw": "^2.6.0",
     "rdf-namespaces": "^1.12.0",
     "typescript": "^5.6.2",
     "vitest": "^2.1.4"

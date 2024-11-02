@@ -1,6 +1,6 @@
 {
   "name": "@soid/koa",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Solid identity for services - koa middleware",
   "keywords": [
     "solid",
